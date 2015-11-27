@@ -67,9 +67,10 @@ one directory using the ``downloadAll()`` method.
         },
         'input': 'upload',
         'file': open('tests/input.pdf', 'rb')
+    })
     process.wait()
     process.downloadAll("tests")
-    })
+
 
 Alternatively you can iterate over ``process['output']['files']`` and
 download them seperately using
