@@ -3,7 +3,7 @@ import urllib
 
 from requests import request, Session
 from requests.exceptions import RequestException
-from multidimensional_urlencode import urlencode
+from .urlencoder import urlencode
 
 from .process import Process
 from .exceptions import (

@@ -1,18 +1,36 @@
-#!/usr/bin/env python
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distribute_setup import use_setuptools
-    use_setuptools()
-    from setuptools import setup
+
+from __future__ import print_function
+
+from setuptools import setup
+
 
 setup(
-    setup_requires=['d2to1'],
-    d2to1=True,
-    tests_require=[
-        "coverage==3.7.1",
-        "nose==1.3.3",
-        "yanc==0.2.4",
-    ],
+    name='cloudconvert',
+    version='1.0.0',
+    url='https://github.com/cloudconvert/cloudconvert-python',
+    license='MIT',
+    author='Josias Montag',
+    tests_require=['nosetests'],
+    author_email='info@cloudconvert.com',
+    description='Official CloudConvert API wrapper',
+    packages=['cloudconvert'],
+    include_package_data=True,
+    platforms='any',
+    zip_safe=False,
+    keywords=["cloudconvert", "convert"],
+    install_requires = ['requests>=2.3.0'],
+    classifiers=[
+        "License :: OSI Approved :: BSD License",
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: System :: Archiving :: Packaging",
+        ],
 )
