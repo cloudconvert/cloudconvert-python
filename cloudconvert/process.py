@@ -1,5 +1,6 @@
 import os
 import shutil
+import time
 
 from .exceptions import (
     APIError, HTTPError, BadRequest, ConversionFailed, TemporaryUnavailable, InvalidResponse, InvalidParameterException
@@ -60,14 +61,17 @@ class Process(object):
 
 
 
-    def wait(self):
+    def wait(self, interval = 1):
         """
-        Waits for the Process to finish (or end with an error)
+        Waits for the Process to finish (or end with an error). Checks the conversion status every interval seconds.
+        :param int interval: Interval in seconds
         :raises APIError: if the CloudConvert API returns an error
         """
-        if self['step']=='finished' or self['step'] =='error':
-            return self
-        return self.refresh({'wait': 'true'})
+        while self['step']!='finished' and self['step'] !='error':
+            self.refresh()
+            time.sleep(interval)
+
+        return self
 
 
 
