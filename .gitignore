@@ -1,0 +1,14 @@
+# execution artefacts
+*.pyc
+.coverage
+.DS_Store
+
+# dist artefacts
+build/
+dist/
+cloudconvert.egg-info/
+*.egg
+
+# dev artefacts
+.idea
+test.py
