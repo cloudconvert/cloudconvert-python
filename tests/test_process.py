@@ -51,7 +51,7 @@ class testProcess(unittest.TestCase):
             'input': 'upload',
             'outputformat': 'jpg',
             'wait': True,
-            'file': open('input.png', 'rb')
+            'file': open('tests/input.png', 'rb')
         })
         self.assertEqual(process['step'],'finished')
         self.assertEqual(process['output']['ext'],'jpg')
@@ -70,7 +70,7 @@ class testProcess(unittest.TestCase):
             'input': 'upload',
             'outputformat': 'jpg',
             'wait': True,
-            'file': open('input.png', 'rb'),
+            'file': open('tests/input.png', 'rb'),
             'converteroptions': {
                 'quality': 10
             }
@@ -92,7 +92,7 @@ class testProcess(unittest.TestCase):
         process.start({
             'input': 'upload',
             'outputformat': 'pdf',
-            'file': open('input.png', 'rb')
+            'file': open('tests/input.png', 'rb')
         })
         process.wait()
         process.download("output.pdf")
@@ -112,7 +112,7 @@ class testProcess(unittest.TestCase):
         process.start({
             'input': 'upload',
             'outputformat': 'jpg',
-            'file': open('input.pdf', 'rb'),
+            'file': open('tests/input.pdf', 'rb'),
             'converteroptions': {
                 'page_range': '1-2'
             }
@@ -134,7 +134,7 @@ class testProcess(unittest.TestCase):
             'inputformat': 'png',
             'outputformat': 'jpg',
             'input': 'upload',
-            'file': open('input.png', 'rb')
+            'file': open('tests/input.png', 'rb')
         }).wait()
         self.assertEqual(process['step'],'finished')
         self.assertEqual(process['output']['ext'],'jpg')

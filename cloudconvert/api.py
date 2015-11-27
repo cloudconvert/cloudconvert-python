@@ -1,5 +1,12 @@
 import json
-import urllib
+
+try:
+    from urllib.parse import quote, unquote
+except ImportError:
+    from urllib import quote, unquote
+
+
+import io
 
 from requests import request, Session
 from requests.exceptions import RequestException
@@ -103,8 +110,16 @@ class Api(object):
 
             ## check if we upload anything
             isupload = False
+
+            try:
+               fileInstance=file # python 2
+            except NameError:
+               fileInstance=io.BufferedReader # python 3
+
             for key, value in content.items():
-                if isinstance(value, file):
+                if key == 'file':
+                    x= ""
+                if isinstance(value, fileInstance):
                     ## if it is file: remove from content dict and add it to files dict
                     isupload = True
                     files = {key: value}
@@ -112,7 +127,7 @@ class Api(object):
                     break
 
             if isupload:
-                url += "?" + urllib.unquote(urlencode(content))
+                url += "?" + unquote(urlencode(content))
             else:
                 headers['Content-type'] = 'application/json'
                 body = json.dumps(content)
