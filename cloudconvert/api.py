@@ -146,34 +146,26 @@ class Api(object):
 
         code = result.status_code
 
-
-        # attempt to decode and return the response
-
-        if not stream:
-            try:
-                json_result = result.json()
-            except ValueError as error:
-                raise InvalidResponse("Failed to decode API response", error)
-
-
         # error check
         if code >= 100 and code < 300:
             if stream:
                 return result
-            else:
-                return json_result
+
+            try:
+                return result.json()
+            except ValueError as error:
+                raise InvalidResponse("Failed to decode API response", error)
         else:
+            json_result = result.json()
             msg = json_result.get('message') if json_result.get('message') else json_result.get('error')
             if code == 400:
-                    raise BadRequest(msg)
+                raise BadRequest(msg)
             elif code == 422:
-                    raise ConversionFailed(msg)
+                raise ConversionFailed(msg)
             elif code == 503:
-                    raise TemporaryUnavailable(msg)
+                raise TemporaryUnavailable(msg)
             else:
                 raise APIError(msg)
-
-
 
     def createProcess(self, parameters):
         """
