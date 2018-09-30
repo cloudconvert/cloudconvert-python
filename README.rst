@@ -27,7 +27,7 @@ Quickstart
         'inputformat': 'png',
         'outputformat': 'jpg',
         'input': 'upload',
-        'file': open('tests/input.png', 'rb')
+        'file': open('tests/input.jpg', 'rb')
     })
     process.wait() # wait until conversion finished
     process.download("tests/output.png") # download output file
