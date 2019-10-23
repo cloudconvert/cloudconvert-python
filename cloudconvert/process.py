@@ -75,7 +75,7 @@ class Process(object):
 
 
 
-    def download(self, localfile = None, remotefile = None):
+    def download(self, localfile = None, remotefile = None, inline=False):
         """
         Download process file from API
         :param str localfile: Local file name (or directory) the file should be downloaded to
@@ -97,10 +97,12 @@ class Process(object):
 
         r = self.api.rawCall("GET", self['output']['url'] + ("/" + remotefile if remotefile else ""), stream=True)
 
+        if inline:
+            return r
+
         with open(localfile, 'wb') as f:
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw, f)
-
 
         return self
 
