@@ -4,7 +4,7 @@ This is the official Python SDK v2 for the [CloudConvert](https://cloudconvert.c
 For API v1, please use [v1 branch](https://github.com/cloudconvert/cloudconvert-python/tree/v1) of this repository.
 
 
-[![Build Status](https://travis-ci.com/cloudconvert/cloudconvert-python.svg?branch=master)](https://travis-ci.com/cloudconvert/cloudconvert-python)
+[![Build Status](https://travis-ci.org/cloudconvert/cloudconvert-python.svg?branch=master)](https://travis-ci.org/cloudconvert/cloudconvert-python)
 ## Installation
 
 ```
