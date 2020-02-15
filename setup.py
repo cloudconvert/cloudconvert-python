@@ -1,36 +1,29 @@
+import setuptools
+import os
 
+with open(os.path.join(os.getcwd(), "README.md"), "r") as fh:
+    long_description = fh.read()
 
-from __future__ import print_function
-
-from setuptools import setup
-
-
-setup(
-    name='cloudconvert',
-    version='1.0.0',
-    url='https://github.com/cloudconvert/cloudconvert-python',
-    license='MIT',
-    author='Josias Montag',
-    tests_require=['nosetests'],
-    author_email='info@cloudconvert.com',
-    description='Official CloudConvert API wrapper',
-    packages=['cloudconvert'],
+setuptools.setup(
+    name="cloudconvert",
+    version="2.0.0",
+    author="Josias Montag",
+    author_email="josias@montag.info",
+    description="Python REST API wrapper for cloud convert",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/cloudconvert/cloudconvert-python",
+    packages=setuptools.find_packages(),
+    install_requires=[
+        "requests",
+        "urllib3"
+    ],
+    tests_require=["requests-mock"],
     include_package_data=True,
-    platforms='any',
-    zip_safe=False,
-    keywords=["cloudconvert", "convert"],
-    install_requires = ['requests>=2.3.0'],
     classifiers=[
-        "License :: OSI Approved :: BSD License",
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Developers",
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.2",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: System :: Archiving :: Packaging",
-        ],
+    ],
+    zip_safe=False
 )
