@@ -15,23 +15,23 @@ For API v1, please use [v1 branch](https://github.com/cloudconvert/cloudconvert-
 
 ## Creating API Client
 
-```
-  import cloudconvert
- 
-  cloudconvert.configure(api_key = 'API_KEY', sandbox = False)
+```py
+ import cloudconvert
+
+ cloudconvert.configure(api_key = 'API_KEY', sandbox = False)
 ```
 
 Or set the environment variable `CLOUDCONVERT_API_KEY` and use:
 
-```
-  import cloudconvert
- 
-  cloudconvert.default()
+```py
+ import cloudconvert
+
+ cloudconvert.default()
 ```
 
 ## Creating Jobs
 
-```js
+```py
  import cloudconvert
 
  cloudconvert.configure(api_key = 'API_KEY')
@@ -61,7 +61,7 @@ Or set the environment variable `CLOUDCONVERT_API_KEY` and use:
 
 CloudConvert can generate public URLs for using `export/url` tasks. You can use these URLs to download output files.
 
-```js
+```py
 exported_url_task_id = "84e872fc-d823-4363-baab-eade2e05ee54"
 res = cloudconvert.Task.wait(id=exported_url_task_id) # Wait for job completion
 file = res.get("result").get("files")[0]
@@ -73,7 +73,7 @@ print(res)
 
 Uploads to CloudConvert are done via `import/upload` tasks (see the [docs](https://cloudconvert.com/api/v2/import#import-upload-tasks)). This SDK offers a convenient upload method:
 
-```js
+```py
 job = cloudconvert.Job.create(payload={
     'tasks': {
         'upload-my-file': {
@@ -93,7 +93,7 @@ res = cloudconvert.Task.find(id=upload_task_id)
 
 The node SDK allows to verify webhook requests received from CloudConvert.
 
-```js
+```py
 payloadString = '...'; # The JSON string from the raw request body.
 signature = '...'; # The value of the "CloudConvert-Signature" header.
 signingSecret = '...'; # You can find it in your webhook settings.
