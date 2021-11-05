@@ -1,9 +1,5 @@
 import re
-
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
+from urllib.parse import urlencode
 
 
 def join_url_params(url, params):
@@ -27,11 +23,6 @@ def merge_dict(data, *override):
     for current_dict in (data,) + override:
         result.update(current_dict)
     return result
-
-
-def older_than_27():
-    import sys
-    return True if sys.version_info[:2] < (2, 7) else False
 
 
 def join_url(url, *paths):

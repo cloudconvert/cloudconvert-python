@@ -1,10 +1,10 @@
 import uuid
-import urllib
+
 import cloudconvert.utils as util
 from cloudconvert.cloudconvertrestclient import default_client
 
 
-class Resource(object):
+class Resource:
     """Base class for all REST services
     """
     convert_resources = {}
@@ -13,11 +13,11 @@ class Resource(object):
         attributes = attributes or {}
         self.__dict__['api_client'] = api_client or default_client()
 
-        super(Resource, self).__setattr__('__data__', {})
-        super(Resource, self).__setattr__('error', None)
-        super(Resource, self).__setattr__('headers', {})
-        super(Resource, self).__setattr__('header', {})
-        super(Resource, self).__setattr__('request_id', None)
+        super().__setattr__('__data__', {})
+        super().__setattr__('error', None)
+        super().__setattr__('headers', {})
+        super().__setattr__('header', {})
+        super().__setattr__('request_id', None)
         self.merge(attributes)
 
     def generate_request_id(self):
@@ -45,8 +45,8 @@ class Resource(object):
     def __setattr__(self, name, value):
         try:
             # Handle attributes(error, header, request_id)
-            super(Resource, self).__getattribute__(name)
-            super(Resource, self).__setattr__(name, value)
+            super().__getattribute__(name)
+            super().__setattr__(name, value)
         except AttributeError:
             self.__data__[name] = self.convert(name, value)
 

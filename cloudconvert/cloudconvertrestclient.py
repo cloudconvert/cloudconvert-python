@@ -1,5 +1,3 @@
-from __future__ import division
-
 import datetime
 import requests
 import json
@@ -16,10 +14,10 @@ from cloudconvert.config import __version__, __endpoint_map__
 log = logging.getLogger(__name__)
 
 
-class CloudConvertRestClient(object):
+class CloudConvertRestClient:
     # User-Agent for HTTP request
-    ssl_version = "" if util.older_than_27() else ssl.OPENSSL_VERSION
-    ssl_version_info = None if util.older_than_27() else ssl.OPENSSL_VERSION_INFO
+    ssl_version = ssl.OPENSSL_VERSION
+    ssl_version_info = ssl.OPENSSL_VERSION_INFO
     library_details = "requests %s; python %s; %s" % (
         requests.__version__, platform.python_version(), ssl_version)
     user_agent = "CloudConvertSDK/CloudConvert-Python-SDK %s (%s)" % (

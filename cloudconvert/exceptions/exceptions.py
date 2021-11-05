@@ -19,7 +19,7 @@ class Redirection(ConnectionError):
     """3xx Redirection
     """
     def __str__(self):
-        message = super(Redirection, self).__str__()
+        message = super().__str__()
         if self.response.get('Location'):
             message = "%s => %s" % (message, self.response.get('Location'))
         return message
