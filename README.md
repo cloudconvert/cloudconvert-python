@@ -1,7 +1,6 @@
 ## cloudconvert-python
 
-This is the official Python SDK v2 for the [CloudConvert](https://cloudconvert.com/api/v2) _API v2_. 
-For API v1, please use [v1 branch](https://github.com/cloudconvert/cloudconvert-python/tree/v1) of this repository.
+This is the official Python SDK for the [CloudConvert](https://cloudconvert.com/api/v2) **API v2**. 
 
 [![Tests](https://github.com/cloudconvert/cloudconvert-python/actions/workflows/run-tests.yml/badge.svg)](https://github.com/cloudconvert/cloudconvert-python/actions/workflows/run-tests.yml)
 ![PyPI](https://img.shields.io/pypi/v/cloudconvert)
