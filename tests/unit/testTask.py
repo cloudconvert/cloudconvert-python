@@ -64,7 +64,7 @@ class TaskTestCase(unittest.TestCase):
                 response_json = json.load(f)
 
             task_id = "4c80f1ae-5b3a-43d5-bb58-1a5c4eb4e46b"
-            m.get("https://api.sandbox.cloudconvert.com/v2/tasks/{}/wait".format(task_id), json=response_json)
+            m.get("https://sync.api.sandbox.cloudconvert.com/v2/tasks/{}".format(task_id), json=response_json)
 
             task = self.cloudconvert.Task.wait(id=task_id)
 

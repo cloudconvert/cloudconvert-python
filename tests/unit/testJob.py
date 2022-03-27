@@ -70,7 +70,7 @@ class JobTestCase(unittest.TestCase):
                 response_json = json.load(f)
 
             job_id = "4c80f1ae-5b3a-43d5-bb58-1a5c4eb4e46b"
-            m.get("https://api.sandbox.cloudconvert.com/v2/jobs/{}/wait".format(job_id), json=response_json)
+            m.get("https://sync.api.sandbox.cloudconvert.com/v2/jobs/{}".format(job_id), json=response_json)
 
             job = self.cloudconvert.Job.wait(id=job_id)
 

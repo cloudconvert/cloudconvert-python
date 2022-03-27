@@ -11,7 +11,7 @@ import urllib
 
 import cloudconvert.utils as util
 from cloudconvert.exceptions import exceptions
-from cloudconvert.config import __version__, __endpoint_map__
+from cloudconvert.config import __version__, __endpoint_map__, __sync_endpoint_map__
 
 log = logging.getLogger(__name__)
 
@@ -40,6 +40,7 @@ class CloudConvertRestClient(object):
                                            "Required: live or sandbox")
 
         self.endpoint = kwargs.get("endpoint", self.default_endpoint())
+        self.sync_endpoint = kwargs.get("sync_endpoint", self.default_sync_endpoint())
         # Mandatory parameter, so not using `dict.get`
         self.proxies = kwargs.get("proxies", None)
         self.token_hash = None
@@ -56,6 +57,9 @@ class CloudConvertRestClient(object):
 
     def default_endpoint(self):
         return __endpoint_map__.get(self.mode)
+
+    def default_sync_endpoint(self):
+        return __sync_endpoint_map__.get(self.mode)
 
     def request(self, url, method, body=None, headers=None):
         """Make HTTP call, formats response and does error handling. Uses http_call method in CloudConvertRestClient class.
@@ -160,6 +164,15 @@ class CloudConvertRestClient(object):
             >>> cloudconvertrestclient.get("v2/jobs/JOB-ID")
         """
         return self.request(util.join_url(self.endpoint, action), 'GET', headers=headers or {})
+
+
+    def get_sync(self, action, headers=None):
+        """Make GET request to sync API
+        Usage::
+            >>> cloudconvertrestclient.get_sync("v2/tasks/TASK-ID")
+            >>> cloudconvertrestclient.get_sync("v2/jobs/JOB-ID")
+        """
+        return self.request(util.join_url(self.sync_endpoint, action), 'GET', headers=headers or {})
 
     def post(self, action, params=None, headers={}):
         """Make POST request

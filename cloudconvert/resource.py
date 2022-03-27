@@ -184,8 +184,8 @@ class Wait(Resource):
         """
         api_client = default_client()
 
-        url = util.join_url(cls.path, str(id), "wait")
-        res = api_client.get(url)
+        url = util.join_url(cls.path, str(id))
+        res = api_client.get_sync(url)
         try:
             return res["data"]
         except:
