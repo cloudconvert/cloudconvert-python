@@ -2,6 +2,7 @@ from cloudconvert.cloudconvertrestclient import *
 from cloudconvert.task import Task
 from cloudconvert.job import Job
 from cloudconvert.webhook import Webhook
+from cloudconvert.signed_url import SignedUrl
 
 def configure(**config):
     """
