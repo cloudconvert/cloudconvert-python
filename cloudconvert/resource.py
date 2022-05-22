@@ -1,7 +1,7 @@
 import uuid
 import urllib
 import cloudconvert.utils as util
-from cloudconvert.cloudconvertrestclient import default_client
+from cloudconvert.cloudconvertrestclient import default_client, get_existing_client
 
 
 class Resource(object):
@@ -114,7 +114,7 @@ class Find(Resource):
         Usage::
             >>> job = Job.find("s9fsf9-s9f9sf9s-ggfgf9-fg9fg")
         """
-        api_client = default_client()
+        api_client = get_existing_client() or default_client()
 
         url = util.join_url(cls.path, str(id))
         res = api_client.get(url)
@@ -134,7 +134,7 @@ class List(Resource):
         Usage::
             >>> tasks_list = tasks.all({'status': 'waiting'})
         """
-        api_client = default_client()
+        api_client = get_existing_client() or default_client()
 
         if params is None:
             url = cls.path
@@ -165,7 +165,7 @@ class Create(Resource):
             >>> task.create(name=TASK_NAME) # return newly created task
         """
 
-        api_client = default_client()
+        api_client = get_existing_client() or default_client()
         url = util.join_url('v2', operation or '')
         res = api_client.post(url, payload, headers={})
 
@@ -182,7 +182,7 @@ class Wait(Resource):
         Usage::
             >>> job = job.wait("s9fsf9-s9f9sf9s-ggfgf9-fg9fg")
         """
-        api_client = default_client()
+        api_client = get_existing_client() or default_client()
 
         url = util.join_url(cls.path, str(id))
         res = api_client.get_sync(url)
@@ -199,7 +199,7 @@ class Show(Resource):
         Usage::
             >>> job = Job.show("s9fsf9-s9f9sf9s-ggfgf9-fg9fg")
         """
-        api_client = default_client()
+        api_client = get_existing_client() or default_client()
         url = util.join_url(cls.path, str(id))
         res = api_client.get(url)
         try:
@@ -215,7 +215,7 @@ class Delete(Resource):
         Usage::
             >>> Task.delete(TASK_ID)
         """
-        api_client = default_client()
+        api_client = get_existing_client() or default_client()
         url = util.join_url(cls.path, str(id))
         api_resource = Resource()
         new_attributes = api_client.delete(url)
