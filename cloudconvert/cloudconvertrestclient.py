@@ -245,6 +245,11 @@ def default_client():
 
     return __client__
 
+def get_existing_client():
+    """Gets an already created client if there is one, None otherwise."""
+    global __client__
+    return __client__
+
 
 def set_config(options=None, **config):
     """Create new default api object with given configuration

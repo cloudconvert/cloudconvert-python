@@ -3,3 +3,4 @@ dist/
 build/
 cloudconvert.egg-info/
 *.egg
+**/__pycache__
