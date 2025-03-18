@@ -78,7 +78,7 @@ class JobsTestCase(unittest.TestCase):
             fileName = exported_task.get("result").get("files")[0].get("filename")
 
             # now download the exported file
-            cloudconvert.download(url=exported_url, filename="out/" + fileName)
+            cloudconvert.download(url=exported_url, filename=os.path.join(os.path.dirname(os.path.realpath(__file__)), "out/" + fileName))
 
     def tearDown(self):
         """

@@ -132,25 +132,14 @@ url = cloudconvert.SignedUrl.sign(base, signing_secret, job, cache_key);  # retu
 ## Unit Tests
 
 ```
-# Run Task tests
-$ python tests/unit/testTask.py
-
-# Run Job tests
-$ python tests/unit/testJob.py
-
-# Run Webhook tests
-$ python tests/unit/testWebhookSignature.py
+python -m unittest discover -s tests/unit
  
 ```
 
 ## Integration Tests
 
 ```
-# Run Integration test for task
-$ python tests/integration/testTasks.py 
-
-# Run Integration test for Job
-$ python tests/integration/testJobs.py 
+python -m unittest discover -s tests/integration 
 
 ```
 
