@@ -1,5 +1,4 @@
 import uuid
-import urllib
 import cloudconvert.utils as util
 from cloudconvert.cloudconvertrestclient import default_client, get_existing_client
 

@@ -7,7 +7,7 @@ import logging
 import os
 import platform
 import ssl
-import urllib
+import urllib.request
 
 import cloudconvert.utils as util
 from cloudconvert.exceptions import exceptions
