@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  # Integration tests hit the live sandbox API, so they run on this version
+  # only -- running them across the whole matrix would trip API rate limits.
+  LATEST_PYTHON: '3.14'
+
 jobs:
   build:
 
@@ -13,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ['3.9', '3.12', '3.13']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
 
     steps:
     - uses: actions/checkout@v4
@@ -24,5 +29,8 @@ jobs:
         cache: 'pip' # caching pip dependencies
     - name: Install dependencies
       run: pip install -r requirements.txt
-    - name: Run tests
-      run: python -m unittest -v
+    - name: Run unit tests
+      run: python -m unittest discover -s tests/unit -t . -v
+    - name: Run integration tests
+      if: matrix.python-version == env.LATEST_PYTHON
+      run: python -m unittest discover -s tests/integration -t . -v
